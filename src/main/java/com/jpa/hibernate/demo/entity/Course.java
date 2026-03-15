@@ -2,7 +2,6 @@ package com.jpa.hibernate.demo.entity;
 
 import jakarta.persistence.*;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
