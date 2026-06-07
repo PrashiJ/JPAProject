@@ -1,5 +1,6 @@
 package com.jpa.hibernate.demo.repository;
 
+import com.jpa.hibernate.demo.entity.Course;
 import com.jpa.hibernate.demo.entity.Passport;
 import com.jpa.hibernate.demo.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -64,6 +65,14 @@ public class StudentRepository {
         Student student = new Student("Mike");
         student.setPassport(passport);
         em.persist(student);   // Passport will be persisted automatically
+    }
+
+    public void  insertStudentAndCourse(Student student, Course course){
+        student.addCourse(course);
+        course.addStudents(student);
+
+        em.persist(student);
+        em.persist(course);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.jpa.hibernate.demo.repository;
 
 import com.jpa.hibernate.demo.entity.Course;
+import com.jpa.hibernate.demo.entity.Review;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -56,6 +57,24 @@ public class CourseRepository {
         TypedQuery<Course> query = em.createQuery("Select c from Course c", Course.class);
         List<Course> rs = query.getResultList();
         logger.info("List of Course-> {}", rs);
+    }
+
+    public void addHardCodedReviewsForCourse(){
+        Course course = findById(10001l);
+        Review review = new Review("5", "Great Hands-on stuff");
+        course.addReviews(review);
+        review.setCourse(course);
+        em.persist(review);
+    }
+
+    public void addReviewsForCourse(Long courseId, List<Review> reviews){
+        Course course = findById(courseId);
+        for(Review review : reviews){
+            course.addReviews(review);
+            review.setCourse(course);
+            em.persist(review);
+        }
+
     }
 
 

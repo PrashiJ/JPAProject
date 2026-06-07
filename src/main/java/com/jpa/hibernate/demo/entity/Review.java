@@ -1,14 +1,12 @@
 package com.jpa.hibernate.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table
 public class Review {
     @Id
+    @GeneratedValue
     private Long id;
     private String rating;
     private String description;
